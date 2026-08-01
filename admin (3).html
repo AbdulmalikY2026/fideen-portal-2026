@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
+    <h1>FIDEEN Admin Dashboard</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="members.html">Members</a>
+    <a href="executives.html">Executives</a>
+    <a href="announcement.html">Announcements</a>
+    <a href="attendance.html">Attendance</a>
+</nav>
+
+
+<section class="welcome">
+
+<h2>Welcome Admin 👋</h2>
+
+<p>Manage FIDEEN activities from here.</p>
+
+<button onclick="logout()">Logout</button>
+
+</section>
+
+
+<section class="cards">
+
+<div class="card">
+<h3>👥 Total Members</h3>
+<h2 id="totalMembers">0</h2>
+</div>
+
+
+<div class="card">
+<h3>👨‍💼 Total Executives</h3>
+<h2 id="totalExecutives">0</h2>
+</div>
+
+
+<div class="card">
+<h3>📅 Attendance Records</h3>
+<h2 id="totalAttendance">0</h2>
+</div>
+
+
+<div class="card">
+<h3>📢 Announcements</h3>
+<h2 id="totalAnnouncements">0</h2>
+</div>
+
+
+<div class="card">
+<h3>👥 Members</h3>
+<p>View and manage registered members.</p>
+<a href="members.html">Open</a>
+</div>
+
+
+<div class="card">
+<h3>📢 Announcements</h3>
+<p>Create FIDEEN announcements.</p>
+<a href="announcement.html">Open</a>
+</div>
+
+
+<div class="card">
+<h3>📅 Attendance</h3>
+<p>Manage Asalatu attendance.</p>
+<a href="attendance.html">Open</a>
+</div>
+
+
+<div class="card">
+<h3>👨‍💼 Executives</h3>
+<p>Manage FIDEEN leadership.</p>
+<a href="executives.html">Open</a>
+</div>
+
+
+</section>
+
+
+<footer>
+<p>FIDEEN TV © 2026</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+if (localStorage.getItem("adminLogin") !== "true") {
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
+    <h1>FIDEEN Attendance</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<nav>
+    <a href="admin.html">Dashboard</a>
+    <a href="members.html">Members</a>
+    <a href="announcement.html">Announcements</a>
+</nav>
+
+<section class="welcome">
+
+<h2>Asalatu Attendance</h2>
+
+<form onsubmit="markAttendance(event)">
+
+<label>Select Member</label>
+<br><br>
+
+<select id="attendanceName" required>
+    <option value="">Choose Member</option>
+</select>
+
+<br><br>
+
+<label>Date</label>
+<br><br>
+
+<input id="attendanceDate" type="date" required>
+
+<br><br>
+
+<button type="submit">Mark Present</button>
+
+</form>
+
+</section>
+
+
+<section class="cards">
+
+<div class="card">
+
+<h3>Attendance Records</h3>
+
+<div id="attendanceList"></div>
+
+</div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

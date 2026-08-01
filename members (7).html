@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Members</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
+    <h1>FIDEEN Members</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="members.html">Members</a>
+    <a href="executives.html">Executives</a>
+    <a href="fideentv.html">FIDEEN TV</a>
+</nav>
+
+<section class="welcome">
+    <h2>Member Registration</h2>
+
+    <form onsubmit="registerMember(event)">
+        <input id="name" type="text" placeholder="Full Name" required><br><br>
+
+        <input id="department" type="text" placeholder="Department" required><br><br>
+
+        <input id="phone" type="tel" placeholder="Phone Number" required><br><br>
+
+        <input id="email" type="email" placeholder="Email Address" required><br><br>
+
+        <input id="photo" type="file" accept="image/*" required><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+</section>
+
+<section class="cards">
+    <div class="card">
+        <h3>Registered Members</h3>
+        <div id="memberList"></div>
+    </div>
+</section>
+
+<footer>
+    <p>FIDEEN TV © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
