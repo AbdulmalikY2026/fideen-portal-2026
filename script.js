@@ -13,6 +13,7 @@ function login(event) {
     }
 }
 
+
 function logout() {
     localStorage.removeItem("adminLogin");
     alert("👋 Logged out successfully!");
@@ -20,7 +21,9 @@ function logout() {
 }
 
 
+
 function registerMember(event) {
+
     event.preventDefault();
 
     let name = document.getElementById("name").value;
@@ -29,16 +32,21 @@ function registerMember(event) {
     let email = document.getElementById("email").value;
     let photo = document.getElementById("photo").files[0];
 
+
     if (!photo) {
         alert("Please select a photo.");
         return;
     }
 
+
     let reader = new FileReader();
+
 
     reader.onload = function(e) {
 
+
         let members = JSON.parse(localStorage.getItem("members")) || [];
+
 
         let member = {
             name: name,
@@ -48,39 +56,58 @@ function registerMember(event) {
             photo: e.target.result
         };
 
+
         members.push(member);
+
 
         localStorage.setItem("members", JSON.stringify(members));
 
+
         displayMembers();
+
 
         alert("✅ Member Registered Successfully!");
 
+
         document.querySelector("form").reset();
+
     };
 
+
     reader.readAsDataURL(photo);
+
 }
+
+
 
 
 function displayMembers() {
 
+
     let memberList = document.getElementById("memberList");
+
 
     if (!memberList) return;
 
+
     memberList.innerHTML = "";
+
 
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    members.forEach(function(member, index) {
+
+    members.forEach(function(member,index){
+
 
         let card = document.createElement("div");
 
+
         card.className = "card";
 
+
         card.innerHTML = `
-        <img src="${member.photo}" width="100" height="100" style="border-radius:50%;"><br><br>
+
+        <img src="${member.photo}" width="100" height="100" style="border-radius:50%;">
 
         <h3>${member.name}</h3>
 
@@ -90,57 +117,73 @@ function displayMembers() {
 
         <p><strong>Email:</strong> ${member.email}</p>
 
+
         <button onclick="editMember(${index})">✏ Edit</button>
 
         <button onclick="deleteMember(${index})">🗑 Delete</button>
+
         `;
 
+
         memberList.appendChild(card);
+
 
     });
 
 
+
     let total = document.getElementById("totalMembers");
 
-    if (total) {
+
+    if(total){
+
         total.innerText = members.length;
+
     }
+
 }
 
 
 
-function editMember(index) {
+
+function editMember(index){
+
 
     let members = JSON.parse(localStorage.getItem("members")) || [];
+
 
     let member = members[index];
 
 
     let newName = prompt("Edit Name:", member.name);
 
-    if (newName === null) return;
+    if(newName === null) return;
 
 
     let newDepartment = prompt("Edit Department:", member.department);
 
-    if (newDepartment === null) return;
+    if(newDepartment === null) return;
 
 
     let newPhone = prompt("Edit Phone:", member.phone);
 
-    if (newPhone === null) return;
+    if(newPhone === null) return;
 
 
     let newEmail = prompt("Edit Email:", member.email);
 
-    if (newEmail === null) return;
+    if(newEmail === null) return;
 
 
 
     members[index].name = newName;
+
     members[index].department = newDepartment;
+
     members[index].phone = newPhone;
+
     members[index].email = newEmail;
+
 
 
     localStorage.setItem("members", JSON.stringify(members));
@@ -150,19 +193,23 @@ function editMember(index) {
 
 
     alert("✅ Member Updated Successfully!");
+
 }
 
 
 
-function deleteMember(index) {
+
+
+function deleteMember(index){
+
 
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
 
-    if (confirm("Delete this member?")) {
+    if(confirm("Delete this member?")){
 
 
-        members.splice(index, 1);
+        members.splice(index,1);
 
 
         localStorage.setItem("members", JSON.stringify(members));
@@ -174,16 +221,20 @@ function deleteMember(index) {
         alert("🗑 Member Deleted Successfully!");
 
     }
+
 }
 
 
 
-function loadMembers() {
+
+
+function loadMembers(){
+
 
     let attendanceName = document.getElementById("attendanceName");
 
 
-    if (!attendanceName) return;
+    if(!attendanceName) return;
 
 
     attendanceName.innerHTML = '<option value="">Choose Member</option>';
@@ -192,7 +243,7 @@ function loadMembers() {
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
 
-    members.forEach(function(member) {
+    members.forEach(function(member){
 
 
         let option = document.createElement("option");
@@ -206,13 +257,17 @@ function loadMembers() {
 
         attendanceName.appendChild(option);
 
+
     });
 
 }
 
 
 
-function markAttendance(event) {
+
+
+function markAttendance(event){
+
 
     event.preventDefault();
 
@@ -229,17 +284,17 @@ function markAttendance(event) {
 
     attendance.push({
 
-        name: name,
+        name:name,
 
-        date: date,
+        date:date,
 
-        status: "Present"
+        status:"Present"
 
     });
 
 
 
-    localStorage.setItem("attendance", JSON.stringify(attendance));
+    localStorage.setItem("attendance",JSON.stringify(attendance));
 
 
     displayAttendance();
@@ -255,34 +310,32 @@ function markAttendance(event) {
 
 
 
-function displayAttendance() {
+
+function displayAttendance(){
 
 
     let attendanceList = document.getElementById("attendanceList");
 
 
-    if (!attendanceList) return;
+    if(!attendanceList) return;
 
 
     attendanceList.innerHTML = "";
 
 
-
     let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
 
 
-
-    attendance.forEach(function(record) {
+    attendance.forEach(function(record){
 
 
         let card = document.createElement("div");
 
 
-        card.className = "card";
+        card.className="card";
 
 
-
-        card.innerHTML = `
+        card.innerHTML=`
 
         <h3>${record.name}</h3>
 
@@ -291,7 +344,6 @@ function displayAttendance() {
         <p><strong>Status:</strong> ${record.status}</p>
 
         `;
-
 
 
         attendanceList.appendChild(card);
@@ -303,12 +355,103 @@ function displayAttendance() {
 
 
 
-window.onload = function() {
+
+
+// ATTENDANCE REPORT
+
+function showAttendanceReport(){
+
+
+    let reportList = document.getElementById("reportList");
+
+
+    if(!reportList) return;
+
+
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+
+
+    if(attendance.length === 0){
+
+
+        reportList.innerHTML = "<p>No attendance record found.</p>";
+
+        return;
+
+    }
+
+
+
+
+    let table = `
+
+    <table border="1" width="100%">
+
+    <tr>
+
+    <th>S/N</th>
+
+    <th>Name</th>
+
+    <th>Date</th>
+
+    <th>Status</th>
+
+    </tr>
+
+    `;
+
+
+
+
+    attendance.forEach(function(record,index){
+
+
+        table += `
+
+        <tr>
+
+        <td>${index + 1}</td>
+
+        <td>${record.name}</td>
+
+        <td>${record.date}</td>
+
+        <td>${record.status}</td>
+
+        </tr>
+
+        `;
+
+
+    });
+
+
+
+    table += "</table>";
+
+
+
+    reportList.innerHTML = table;
+
+}
+
+
+
+
+
+window.onload = function(){
+
 
     displayMembers();
 
     loadMembers();
 
     displayAttendance();
+
+    showAttendanceReport();
+
 
 };
