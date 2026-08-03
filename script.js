@@ -214,3 +214,115 @@ function deleteMember(index){
         displayMembers();
 
         alert("🗑
+
+              // ==========================
+// PENDING APPLICATIONS
+// ==========================
+
+function displayPending(){
+
+    let pendingList = document.getElementById("pendingList");
+
+    if(!pendingList) return;
+
+    pendingList.innerHTML = "";
+
+    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+
+    if(pendingMembers.length === 0){
+        pendingList.innerHTML = "<p>No pending applications.</p>";
+        return;
+    }
+
+    pendingMembers.forEach(function(member,index){
+
+        pendingList.innerHTML += `
+
+        <div class="card">
+
+            <img src="${member.photo}" width="100" height="100" style="border-radius:50%;">
+
+            <h3>${member.name}</h3>
+
+            <p><strong>Department:</strong> ${member.department}</p>
+
+            <p><strong>Phone:</strong> ${member.phone}</p>
+
+            <p><strong>Email:</strong> ${member.email}</p>
+
+            <button onclick="approveMember(${index})">✅ Approve</button>
+
+            <button onclick="rejectMember(${index})">❌ Reject</button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+// ==========================
+// APPROVE MEMBER
+// ==========================
+
+function approveMember(index){
+
+    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    if(index < 0 || index >= pendingMembers.length){
+        alert("❌ Member not found.");
+        return;
+    }
+
+    let member = pendingMembers[index];
+
+    member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
+
+    members.push(member);
+
+    localStorage.setItem("members", JSON.stringify(members));
+
+    pendingMembers.splice(index,1);
+
+    localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+
+    displayPending();
+    displayMembers();
+    loadMembers();
+    loadDashboardStats();
+
+    alert("✅ Member Approved Successfully!");
+
+}
+
+
+// ==========================
+// REJECT MEMBER
+// ==========================
+
+function rejectMember(index){
+
+    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+
+    if(index < 0 || index >= pendingMembers.length){
+        alert("❌ Member not found.");
+        return;
+    }
+
+    if(confirm("Reject this application?")){
+
+        pendingMembers.splice(index,1);
+
+        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+
+        displayPending();
+        loadDashboardStats();
+
+        alert("❌ Application Rejected.");
+
+    }
+
+    }
