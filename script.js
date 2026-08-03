@@ -294,7 +294,7 @@ function approveMember(index){
 
     pendingMembers.splice(index,1);
 
-    alert("5");
+    alert("Saved successfully");
 
     localStorage.setItem("members", JSON.stringify(members));
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
