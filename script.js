@@ -271,7 +271,7 @@ function displayPending(){
 // ==========================
 
 function approveMember(index){
-
+alert("Approve button clicked");
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
