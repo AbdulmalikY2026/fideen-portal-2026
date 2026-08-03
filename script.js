@@ -49,12 +49,13 @@ function registerMember(event) {
 
 
         let member = {
-            name: name,
-            department: department,
-            phone: phone,
-            email: email,
-            photo: e.target.result
-        };
+    id: "FDN-" + String(members.length + 1).padStart(4, "0"),
+    name: name,
+    department: department,
+    phone: phone,
+    email: email,
+    photo: e.target.result
+};
 
 
         members.push(member);
