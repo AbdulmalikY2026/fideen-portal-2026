@@ -378,23 +378,23 @@ function displayPending(){
 
 function approveMember(index){
 
-    alert("New approve function loaded");
-
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    // rest of your code...
-}
+    if(index < 0 || index >= pendingMembers.length){
+        alert("Invalid member.");
+        return;
+    }
 
     let member = pendingMembers[index];
 
-    member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
+    member.id = "FDN-" + String(members.length + 1).padStart(4, "0");
 
     members.push(member);
 
     localStorage.setItem("members", JSON.stringify(members));
 
-    pendingMembers.splice(index,1);
+    pendingMembers.splice(index, 1);
 
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
@@ -402,7 +402,7 @@ function approveMember(index){
     displayMembers();
     loadDashboardStats();
 
-    alert("✅ Member approved successfully!");
+    alert("✅ Member Approved Successfully!");
 }
 
 
