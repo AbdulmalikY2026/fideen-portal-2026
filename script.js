@@ -378,13 +378,11 @@ function displayPending(){
 
 function approveMember(index){
 
-    alert("Approve button clicked");
-
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     if(index < 0 || index >= pendingMembers.length){
-        alert("Invalid member index");
+        alert("Invalid member.");
         return;
     }
 
@@ -400,11 +398,11 @@ function approveMember(index){
 
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-    alert("✅ Member Approved!");
-
     displayPending();
     displayMembers();
     loadDashboardStats();
+
+    alert("✅ Member approved successfully!");
 }
 
 
