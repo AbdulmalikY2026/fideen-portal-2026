@@ -428,3 +428,71 @@ function displayAttendance(){
     });
 
         }
+
+    // ==========================
+// DASHBOARD STATISTICS
+// ==========================
+
+function loadDashboardStats(){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+
+    let totalMembers = document.getElementById("totalMembers");
+    let totalAttendance = document.getElementById("totalAttendance");
+    let totalPending = document.getElementById("totalPending");
+
+    if(totalMembers){
+        totalMembers.innerText = members.length;
+    }
+
+    if(totalAttendance){
+        totalAttendance.innerText = attendance.length;
+    }
+
+    if(totalPending){
+        totalPending.innerText = pendingMembers.length;
+    }
+
+}
+
+
+// ==========================
+// DATE & TIME
+// ==========================
+
+function showDateTime(){
+
+    let now = new Date();
+
+    let currentDate = document.getElementById("currentDate");
+    let currentTime = document.getElementById("currentTime");
+
+    if(currentDate){
+        currentDate.innerHTML = "📅 " + now.toLocaleDateString();
+    }
+
+    if(currentTime){
+        currentTime.innerHTML = "🕒 " + now.toLocaleTimeString();
+    }
+
+}
+
+setInterval(showDateTime,1000);
+
+
+// ==========================
+// PAGE LOAD
+// ==========================
+
+window.onload = function(){
+
+    displayMembers();
+    displayPending();
+    loadMembers();
+    displayAttendance();
+    loadDashboardStats();
+    showDateTime();
+
+};
