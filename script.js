@@ -48,23 +48,7 @@ function registerMember(event) {
         let members = JSON.parse(localStorage.getItem("members")) || [];
 
 
-        let member = {
-    id: "FDN-" + String(members.length + 1).padStart(4, "0"),
-    name: name,
-    department: department,
-    phone: phone,
-    email: email,
-    photo: e.target.result
-};
-
-
-        members.push(member);
-
-
-        localStorage.setItem("members", JSON.stringify(members));
-
-
-        displayMembers();
+        
 function searchMembers() {
 
     let input = document.getElementById("searchMember");
