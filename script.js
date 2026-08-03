@@ -444,7 +444,6 @@ function showAttendanceReport(){
 
 window.onload = function(){
 
-
     displayMembers();
 
     loadMembers();
@@ -453,6 +452,7 @@ window.onload = function(){
 
     showAttendanceReport();
 
+    loadDashboardStats();
 
 };
 function loadDashboardStats(){
