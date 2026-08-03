@@ -603,3 +603,25 @@ function deleteExecutive(index){
 }
 
 window.addEventListener("load", displayExecutives);
+function showDateTime(){
+
+    let now = new Date();
+
+    let date = now.toLocaleDateString();
+
+    let time = now.toLocaleTimeString();
+
+    let currentDate = document.getElementById("currentDate");
+    let currentTime = document.getElementById("currentTime");
+
+    if(currentDate){
+        currentDate.innerHTML = "📅 " + date;
+    }
+
+    if(currentTime){
+        currentTime.innerHTML = "🕒 " + time;
+    }
+
+}
+
+setInterval(showDateTime,1000);
