@@ -707,7 +707,13 @@ function approveMember(index){
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
 
-    alert("🎉 Congratulations! Member approved successfully.");
+    alert(
+"🎉 Congratulations!\n\n" +
+"Your FIDEEN membership application has been approved.\n\n" +
+"Member ID: " + member.id + "\n\n" +
+"Welcome to FITHYATUD-DEENIL-ISLAMY (FIDEEN).\n\n" +
+"Allah Is Our Strength."
+);
 
 
     displayPending();
