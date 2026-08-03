@@ -100,3 +100,117 @@ function searchMembers(){
     });
 
           }
+// ==========================
+// DISPLAY MEMBERS
+// ==========================
+
+function displayMembers(){
+
+    let memberList = document.getElementById("memberList");
+
+    if(!memberList) return;
+
+    memberList.innerHTML = "";
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    members.forEach(function(member,index){
+
+        memberList.innerHTML += `
+
+        <div class="card">
+
+            <img src="${member.photo}" width="100" height="100" style="border-radius:50%;">
+
+            <h3>${member.name}</h3>
+
+            <p><strong>Department:</strong> ${member.department}</p>
+
+            <p><strong>Phone:</strong> ${member.phone}</p>
+
+            <p><strong>Email:</strong> ${member.email}</p>
+
+            <p><strong>Member ID:</strong> ${member.id || "Not Assigned"}</p>
+
+            <button onclick="editMember(${index})">✏ Edit</button>
+
+            <button onclick="deleteMember(${index})">🗑 Delete</button>
+
+        </div>
+
+        `;
+
+    });
+
+    let totalMembers = document.getElementById("totalMembers");
+
+    if(totalMembers){
+        totalMembers.innerText = members.length;
+    }
+
+}
+
+
+// ==========================
+// EDIT MEMBER
+// ==========================
+
+function editMember(index){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    if(index < 0 || index >= members.length){
+        alert("Member not found.");
+        return;
+    }
+
+    let member = members[index];
+
+    let newName = prompt("Edit Name:", member.name);
+    if(newName === null) return;
+
+    let newDepartment = prompt("Edit Department:", member.department);
+    if(newDepartment === null) return;
+
+    let newPhone = prompt("Edit Phone:", member.phone);
+    if(newPhone === null) return;
+
+    let newEmail = prompt("Edit Email:", member.email);
+    if(newEmail === null) return;
+
+    member.name = newName;
+    member.department = newDepartment;
+    member.phone = newPhone;
+    member.email = newEmail;
+
+    localStorage.setItem("members", JSON.stringify(members));
+
+    displayMembers();
+
+    alert("✅ Member Updated Successfully!");
+
+}
+
+
+// ==========================
+// DELETE MEMBER
+// ==========================
+
+function deleteMember(index){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    if(index < 0 || index >= members.length){
+        alert("Member not found.");
+        return;
+    }
+
+    if(confirm("Delete this member?")){
+
+        members.splice(index,1);
+
+        localStorage.setItem("members", JSON.stringify(members));
+
+        displayMembers();
+
+        alert("🗑
