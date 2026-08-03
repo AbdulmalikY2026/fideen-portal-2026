@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Member ID Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo" width="80">
+    <h1>FIDEEN OFFA BRANCH</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+    <img id="memberPhoto" width="120" height="120" style="border-radius:50%;">
+
+    <h2 id="memberName">Member Name</h2>
+
+    <p><strong>Department:</strong> <span id="memberDepartment"></span></p>
+
+    <p><strong>Phone:</strong> <span id="memberPhone"></span></p>
+
+    <p><strong>Email:</strong> <span id="memberEmail"></span></p>
+
+    <p><strong>Member ID:</strong> <span id="memberId"></span></p>
+
+    <button onclick="window.print()">🖨 Print ID Card</button>
+
+</div>
+
+</section>
+
+<script>
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+if (members.length > 0) {
+    let member = members[0]; // Displays the first member
+
+    document.getElementById("memberPhoto").src = member.photo;
+    document.getElementById("memberName").innerText = member.name;
+    document.getElementById("memberDepartment").innerText = member.department;
+    document.getElementById("memberPhone").innerText = member.phone;
+    document.getElementById("memberEmail").innerText = member.email;
+    document.getElementById("memberId").innerText = "FDN-0001";
+}
+</script>
+
+</body>
+</html>
