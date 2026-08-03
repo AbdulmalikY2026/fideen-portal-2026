@@ -689,8 +689,17 @@ function approveMember(index){
     let members = JSON.parse(localStorage.getItem("members")) || [];
     alert("3");
 
-    let member = pendingMembers[index];
-    alert("4");
+    alert("Pending members: " + pendingMembers.length);
+alert("Index: " + index);
+
+let member = pendingMembers[index];
+
+if (!member) {
+    alert("Error: Member not found.");
+    return;
+}
+
+alert("4");
 
     member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
     alert("5");
