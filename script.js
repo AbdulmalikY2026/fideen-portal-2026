@@ -209,74 +209,88 @@ function deleteMember(index){
 
 
 
-window.addEventListener("load", displayExecutives);
-function showDateTime(){
+// ==========================
+// LOAD MEMBERS INTO ATTENDANCE
+// ==========================
 
-    let now = new Date();
+function loadMembers(){
 
-    let date = now.toLocaleDateString();
+    let attendanceName = document.getElementById("attendanceName");
 
-    let time = now.toLocaleTimeString();
+    if(!attendanceName) return;
 
-    let currentDate = document.getElementById("currentDate");
-    let currentTime = document.getElementById("currentTime");
+    attendanceName.innerHTML = '<option value="">Choose Member</option>';
 
-    if(currentDate){
-        currentDate.innerHTML = "📅 " + date;
-    }
+    let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    if(currentTime){
-        currentTime.innerHTML = "🕒 " + time;
-    }
+    members.forEach(function(member){
+
+        attendanceName.innerHTML += `
+        <option value="${member.name}">
+            ${member.name}
+        </option>
+        `;
+
+    });
 
 }
 
-setInterval(showDateTime,1000);
-function displayPending(){
 
-    let pendingList = document.getElementById("pendingList");
+// ==========================
+// MARK ATTENDANCE
+// ==========================
 
-    if(!pendingList) return;
+function markAttendance(event){
 
-    pendingList.innerHTML = "";
+    event.preventDefault();
 
-    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+    let name = document.getElementById("attendanceName").value;
+    let date = document.getElementById("attendanceDate").value;
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.push({
+        name:name,
+        date:date,
+        status:"Present"
+    });
+
+    localStorage.setItem("attendance", JSON.stringify(attendance));
+
+    alert("✅ Attendance Marked Successfully");
+
+    displayAttendance();
+
+    document.querySelector("form").reset();
+
+}
 
 
-    if(pendingMembers.length === 0){
+// ==========================
+// DISPLAY ATTENDANCE
+// ==========================
 
-        pendingList.innerHTML = "<p>No pending applications.</p>";
-        return;
+function displayAttendance(){
 
-    }
+    let attendanceList = document.getElementById("attendanceList");
 
+    if(!attendanceList) return;
 
-    pendingMembers.forEach(function(member,index){
+    attendanceList.innerHTML = "";
 
-        pendingList.innerHTML += `
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.forEach(function(record){
+
+        attendanceList.innerHTML += `
 
         <div class="card">
 
-        <img src="${member.photo}" width="100" height="100" style="border-radius:50%;">
+            <h3>${record.name}</h3>
 
-        <h3>${member.name}</h3>
+            <p><strong>Date:</strong> ${record.date}</p>
 
-        <p><strong>Department:</strong> ${member.department}</p>
-
-        <p><strong>Phone:</strong> ${member.phone}</p>
-
-        <p><strong>Email:</strong> ${member.email}</p>
-
-
-        <button onclick="approveMember(${index})">
-        ✅ Approve
-        </button>
-
-
-        <button onclick="rejectMember(${index})">
-        ❌ Reject
-        </button>
-
+            <p><strong>Status:</strong> ${record.status}</p>
 
         </div>
 
@@ -287,72 +301,26 @@ function displayPending(){
 }
 
 
+// ==========================
+// DASHBOARD STATISTICS
+// ==========================
 
-function approveMember(index){
-
-    alert("1");
-
-    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
-    alert("2");
+function loadDashboardStats(){
 
     let members = JSON.parse(localStorage.getItem("members")) || [];
-    alert("3");
-
-    alert("Pending members: " + pendingMembers.length);
-alert("Index: " + index);
-
-let member = pendingMembers[index];
-
-if (!member) {
-    alert("Error: Member not found.");
-    return;
-}
-
-alert("4");
-
-    member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
-    alert("5");
-
-    members.push(member);
-alert("6");
-
-try {
-    localStorage.setItem("members", JSON.stringify(members));
-    alert("7");
-} catch (e) {
-    alert("ERROR: " + e.message);
-}
-
-    pendingMembers.splice(index,1);
-    alert("8");
-
-    localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
-    alert("9");
-
-    displayPending();
-    alert("10");
-}
-
-
-function rejectMember(index){
-
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
+    if(document.getElementById("totalMembers")){
+        document.getElementById("totalMembers").innerText = members.length;
+    }
 
-    if(confirm("Reject this application?")){
+    if(document.getElementById("totalAttendance")){
+        document.getElementById("totalAttendance").innerText = attendance.length;
+    }
 
-
-        pendingMembers.splice(index,1);
-
-
-        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
-
-
-        alert("❌ Application rejected.");
-
-
-        displayPending();
-
+    if(document.getElementById("totalPending")){
+        document.getElementById("totalPending").innerText = pendingMembers.length;
     }
 
 }
