@@ -7,47 +7,56 @@
 
 <body>
 
-<header>
-    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo" width="80">
-    <h1>FIDEEN OFFA BRANCH</h1>
-    <p>Allah Is Our Strength</p>
-</header>
+<center>
 
-<section class="cards">
+<div style="width:350px;border:3px solid purple;border-radius:15px;padding:20px;background:white;box-shadow:0 0 10px gray;">
 
-<div class="card">
+<img src="file_000000006b08720aae07e71ef672adcb.png" width="70">
 
-    <img id="memberPhoto" width="120" height="120" style="border-radius:50%;">
+<h2 style="color:purple;">FIDEEN OFFA BRANCH</h2>
 
-    <h2 id="memberName">Member Name</h2>
+<p><b>Allah Is Our Strength</b></p>
 
-    <p><strong>Department:</strong> <span id="memberDepartment"></span></p>
+<hr>
 
-    <p><strong>Phone:</strong> <span id="memberPhone"></span></p>
+<img id="memberPhoto" width="120" height="120" style="border-radius:50%;border:3px solid purple;">
 
-    <p><strong>Email:</strong> <span id="memberEmail"></span></p>
+<h2 id="memberName"></h2>
 
-    <p><strong>Member ID:</strong> <span id="memberId"></span></p>
+<p><b>Member ID:</b> <span id="memberId"></span></p>
 
-    <button onclick="window.print()">🖨 Print ID Card</button>
+<p><b>Department:</b> <span id="memberDepartment"></span></p>
+
+<p><b>Phone:</b> <span id="memberPhone"></span></p>
+
+<p><b>Email:</b> <span id="memberEmail"></span></p>
+
+<p><b>Date Joined:</b> <span id="joinDate"></span></p>
+
+<button onclick="window.print()">🖨 Print ID Card</button>
 
 </div>
 
-</section>
+</center>
 
 <script>
+
 let members = JSON.parse(localStorage.getItem("members")) || [];
 
-if (members.length > 0) {
-    let member = members[0]; // Displays the first member
+if(members.length > 0){
 
-    document.getElementById("memberPhoto").src = member.photo;
-    document.getElementById("memberName").innerText = member.name;
-    document.getElementById("memberDepartment").innerText = member.department;
-    document.getElementById("memberPhone").innerText = member.phone;
-    document.getElementById("memberEmail").innerText = member.email;
-    document.getElementById("memberId").innerText = member.id;
+let member = members[0];
+
+document.getElementById("memberPhoto").src = member.photo;
+document.getElementById("memberName").innerText = member.name;
+document.getElementById("memberDepartment").innerText = member.department;
+document.getElementById("memberPhone").innerText = member.phone;
+document.getElementById("memberEmail").innerText = member.email;
+document.getElementById("memberId").innerText = member.id;
+document.getElementById("joinDate").innerText = new Date().toLocaleDateString();
+
 }
+
 </script>
 
 </body>
