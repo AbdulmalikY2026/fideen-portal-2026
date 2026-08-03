@@ -296,10 +296,13 @@ function approveMember(index){
 
     alert("Saved successfully");
 
+    try {
     localStorage.setItem("members", JSON.stringify(members));
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
-
     alert("Saved successfully");
+} catch (e) {
+    alert("Error: " + e.message);
+}
 
     displayPending();
 
