@@ -512,3 +512,94 @@ function loadDashboardStats(){
     }
 
 }
+function addExecutive(event){
+
+    event.preventDefault();
+
+    let name = document.getElementById("executiveName").value;
+    let position = document.getElementById("executivePosition").value;
+    let phone = document.getElementById("executivePhone").value;
+    let photo = document.getElementById("executivePhoto").files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = function(e){
+
+        let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+        executives.push({
+            name:name,
+            position:position,
+            phone:phone,
+            photo:e.target.result
+        });
+
+        localStorage.setItem("executives", JSON.stringify(executives));
+
+        displayExecutives();
+
+        alert("✅ Executive Added Successfully!");
+
+        document.querySelector("form").reset();
+
+    };
+
+    reader.readAsDataURL(photo);
+
+}
+
+
+
+function displayExecutives(){
+
+    let executiveList = document.getElementById("executiveList");
+
+    if(!executiveList) return;
+
+    executiveList.innerHTML = "";
+
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    executives.forEach(function(executive,index){
+
+        executiveList.innerHTML += `
+
+        <div class="card">
+
+        <img src="${executive.photo}" width="100" height="100" style="border-radius:50%;">
+
+        <h3>${executive.name}</h3>
+
+        <p><strong>${executive.position}</strong></p>
+
+        <p>${executive.phone}</p>
+
+        <button onclick="deleteExecutive(${index})">🗑 Delete</button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+
+function deleteExecutive(index){
+
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    if(confirm("Delete this executive?")){
+
+        executives.splice(index,1);
+
+        localStorage.setItem("executives",JSON.stringify(executives));
+
+        displayExecutives();
+
+    }
+
+}
+
+window.addEventListener("load", displayExecutives);
