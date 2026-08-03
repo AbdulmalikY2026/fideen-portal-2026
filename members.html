@@ -22,7 +22,11 @@
 
 <section class="welcome">
     <h2>Member Registration</h2>
-
+<input
+    type="text"
+    id="searchMember"
+    placeholder="🔍 Search member by name..."
+    onkeyup="searchMembers()">
     <form onsubmit="registerMember(event)">
         <input id="name" type="text" placeholder="Full Name" required><br><br>
 
