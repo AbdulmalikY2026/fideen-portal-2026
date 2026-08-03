@@ -213,7 +213,10 @@ function deleteMember(index){
 
         displayMembers();
 
-        alert("🗑
+        alert("🗑 Member Deleted Successfully!");
+
+    }
+}
 
               // ==========================
 // PENDING APPLICATIONS
