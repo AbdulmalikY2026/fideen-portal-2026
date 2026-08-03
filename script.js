@@ -326,3 +326,105 @@ function rejectMember(index){
     }
 
     }
+
+    // ==========================
+// LOAD MEMBERS INTO ATTENDANCE
+// ==========================
+
+function loadMembers(){
+
+    let attendanceName = document.getElementById("attendanceName");
+
+    if(!attendanceName) return;
+
+    attendanceName.innerHTML = '<option value="">Choose Member</option>';
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    members.forEach(function(member){
+
+        attendanceName.innerHTML += `
+            <option value="${member.name}">
+                ${member.name}
+            </option>
+        `;
+
+    });
+
+}
+
+
+// ==========================
+// MARK ATTENDANCE
+// ==========================
+
+function markAttendance(event){
+
+    event.preventDefault();
+
+    let name = document.getElementById("attendanceName").value;
+    let date = document.getElementById("attendanceDate").value;
+
+    if(name === ""){
+        alert("Please choose a member.");
+        return;
+    }
+
+    if(date === ""){
+        alert("Please select a date.");
+        return;
+    }
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.push({
+        name: name,
+        date: date,
+        status: "Present"
+    });
+
+    localStorage.setItem("attendance", JSON.stringify(attendance));
+
+    displayAttendance();
+    loadDashboardStats();
+
+    alert("✅ Attendance Marked Successfully!");
+
+    document.querySelector("form").reset();
+
+}
+
+
+// ==========================
+// DISPLAY ATTENDANCE
+// ==========================
+
+function displayAttendance(){
+
+    let attendanceList = document.getElementById("attendanceList");
+
+    if(!attendanceList) return;
+
+    attendanceList.innerHTML = "";
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.forEach(function(record){
+
+        attendanceList.innerHTML += `
+
+        <div class="card">
+
+            <h3>${record.name}</h3>
+
+            <p><strong>Date:</strong> ${record.date}</p>
+
+            <p><strong>Status:</strong> ${record.status}</p>
+
+        </div>
+
+        `;
+
+    });
+
+        }
