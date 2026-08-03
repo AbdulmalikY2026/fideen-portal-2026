@@ -378,13 +378,13 @@ function displayPending(){
 
 function approveMember(index){
 
+    alert("New approve function loaded");
+
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    if(index < 0 || index >= pendingMembers.length){
-        alert("Invalid member.");
-        return;
-    }
+    // rest of your code...
+}
 
     let member = pendingMembers[index];
 
