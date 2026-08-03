@@ -32,37 +32,34 @@ function registerMember(event) {
     let email = document.getElementById("email").value;
     let photo = document.getElementById("photo").files[0];
 
-
     if (!photo) {
         alert("Please select a photo.");
         return;
     }
 
-
     let reader = new FileReader();
-
 
     reader.onload = function(e) {
 
-
         let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
+        let member = {
+            name: name,
+            department: department,
+            phone: phone,
+            email: email,
+            photo: e.target.result
+        };
 
-let member = {
-    name: name,
-    department: department,
-    phone: phone,
-    email: email,
-    photo: e.target.result
-};
+        pendingMembers.push(member);
 
+        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-pendingMembers.push(member);
+        alert("✅ Registration submitted! Waiting for admin approval.");
 
+        document.querySelector("form").reset();
 
-localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
-        
-
+    };
 
     reader.readAsDataURL(photo);
 
