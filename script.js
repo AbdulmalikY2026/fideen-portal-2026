@@ -45,9 +45,22 @@ function registerMember(event) {
     reader.onload = function(e) {
 
 
-        let members = JSON.parse(localStorage.getItem("members")) || [];
+        let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
 
+let member = {
+    name: name,
+    department: department,
+    phone: phone,
+    email: email,
+    photo: e.target.result
+};
+
+
+pendingMembers.push(member);
+
+
+localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
         
 function searchMembers() {
 
