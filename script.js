@@ -71,8 +71,29 @@ function registerMember(event) {
 
 function searchMembers() {
 
-    l
+    let input = document.getElementById("searchMember");
+
+    if (!input) return;
+
+    let filter = input.value.toLowerCase();
+
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(function(card) {
+
+        let name = card.querySelector("h3");
+
+        if (!name) return;
+
+        if (name.innerText.toLowerCase().includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
         }
+
+    });
+
+}
 
     
 
