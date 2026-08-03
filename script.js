@@ -1,32 +1,33 @@
-function login(event) {
-    event.preventDefault();
+// ==========================
+// LOGIN
+// ==========================
 
-    alert("Login function started");
+function login(event){
+    event.preventDefault();
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    alert(username + " | " + password);
-
-    if (username === "admin" && password === "1234") {
-        alert("Correct username and password");
-        localStorage.setItem("adminLogin", "true");
+    if(username === "admin" && password === "1234"){
+        localStorage.setItem("adminLogin","true");
+        alert("✅ Login Successful");
         window.location.href = "admin.html";
-    } else {
-        alert("Wrong username or password");
+    }else{
+        alert("❌ Incorrect Username or Password");
     }
 }
 
-
-function logout() {
+function logout(){
     localStorage.removeItem("adminLogin");
-    alert("👋 Logged out successfully!");
-    window.location.href = "login.html";
+    window.location.href="login.html";
 }
 
 
+// ==========================
+// MEMBER REGISTRATION
+// ==========================
 
-function registerMember(event) {
+function registerMember(event){
 
     event.preventDefault();
 
@@ -36,30 +37,34 @@ function registerMember(event) {
     let email = document.getElementById("email").value;
     let photo = document.getElementById("photo").files[0];
 
-    if (!photo) {
-        alert("Please select a photo.");
+    if(!photo){
+        alert("Please choose a photo.");
         return;
     }
 
     let reader = new FileReader();
 
-    reader.onload = function(e) {
+    reader.onload = function(e){
 
-        let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+        let pendingMembers =
+        JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
-        let member = {
-            name: name,
-            department: department,
-            phone: phone,
-            email: email,
-            photo: e.target.result
-        };
+        pendingMembers.push({
 
-        pendingMembers.push(member);
+            name:name,
+            department:department,
+            phone:phone,
+            email:email,
+            photo:e.target.result
 
-        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+        });
 
-        alert("✅ Registration submitted! Waiting for admin approval.");
+        localStorage.setItem(
+            "pendingMembers",
+            JSON.stringify(pendingMembers)
+        );
+
+        alert("✅ Registration submitted successfully.\nWaiting for Admin Approval.");
 
         document.querySelector("form").reset();
 
@@ -69,26 +74,35 @@ function registerMember(event) {
 
 }
 
-function searchMembers() {
 
-    let input = document.getElementById("searchMember");
+// ==========================
+// SEARCH MEMBERS
+// ==========================
 
-    if (!input) return;
+function searchMembers(){
 
-    let filter = input.value.toLowerCase();
+    let input=document.getElementById("searchMember");
 
-    let cards = document.querySelectorAll(".card");
+    if(!input) return;
 
-    cards.forEach(function(card) {
+    let filter=input.value.toLowerCase();
 
-        let name = card.querySelector("h3");
+    let cards=document.querySelectorAll(".card");
 
-        if (!name) return;
+    cards.forEach(function(card){
 
-        if (name.innerText.toLowerCase().includes(filter)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
+        let name=card.querySelector("h3");
+
+        if(!name) return;
+
+        if(name.innerText.toLowerCase().includes(filter)){
+
+            card.style.display="";
+
+        }else{
+
+            card.style.display="none";
+
         }
 
     });
