@@ -81,6 +81,7 @@ function displayMembers() {
             <p><strong>Phone:</strong> ${member.phone}</p>
             <p><strong>Email:</strong> ${member.email}</p>
 
+            <button onclick="editMember(${index})">✏ Edit</button>
             <button onclick="deleteMember(${index})">🗑 Delete</button>
         `;
 
@@ -93,13 +94,46 @@ function displayMembers() {
     }
 }
 
+function editMember(index) {
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    let member = members[index];
+
+    let newName = prompt("Edit Name:", member.name);
+    if (newName === null) return;
+
+    let newDepartment = prompt("Edit Department:", member.department);
+    if (newDepartment === null) return;
+
+    let newPhone = prompt("Edit Phone:", member.phone);
+    if (newPhone === null) return;
+
+    let newEmail = prompt("Edit Email:", member.email);
+    if (newEmail === null) return;
+
+    members[index].name = newName;
+    members[index].department = newDepartment;
+    members[index].phone = newPhone;
+    members[index].email = newEmail;
+
+    localStorage.setItem("members", JSON.stringify(members));
+
+    displayMembers();
+
+    alert("✅ Member Updated Successfully!");
+}
+
 function deleteMember(index) {
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     if (confirm("Delete this member?")) {
         members.splice(index, 1);
+
         localStorage.setItem("members", JSON.stringify(members));
+
         displayMembers();
+
+        alert("🗑 Member Deleted Successfully!");
     }
 }
 
