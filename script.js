@@ -703,10 +703,14 @@ alert("4");
     alert("5");
 
     members.push(member);
-    alert("6");
+alert("6");
 
+try {
     localStorage.setItem("members", JSON.stringify(members));
     alert("7");
+} catch (e) {
+    alert("ERROR: " + e.message);
+}
 
     pendingMembers.splice(index,1);
     alert("8");
