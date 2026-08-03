@@ -683,6 +683,7 @@ function displayPending(){
 
 
 function approveMember(index){
+    alert("Approve is working");
 
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
