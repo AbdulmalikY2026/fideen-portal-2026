@@ -378,15 +378,17 @@ function displayPending(){
 
 function approveMember(index){
 
+    alert("Approve button clicked");
+
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    let member = pendingMembers[index];
-
-    if(!member){
-        alert("Member not found.");
+    if(index < 0 || index >= pendingMembers.length){
+        alert("Invalid member index");
         return;
     }
+
+    let member = pendingMembers[index];
 
     member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
 
@@ -398,16 +400,11 @@ function approveMember(index){
 
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-    alert(
-        "🎉 Congratulations!\n\n" +
-        "Your membership has been approved.\n\n" +
-        "Member ID: " + member.id
-    );
+    alert("✅ Member Approved!");
 
     displayPending();
     displayMembers();
     loadDashboardStats();
-
 }
 
 
