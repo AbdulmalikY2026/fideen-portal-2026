@@ -27,7 +27,48 @@ function logout(){
 // MEMBER REGISTRATION
 // ==========================
 
+function registerMember(event){
 
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let department = document.getElementById("department").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let photo = document.getElementById("photo").files[0];
+
+    if(!photo){
+        alert("Please choose a photo.");
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = function(e){
+
+        let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+
+        let member = {
+            name: name,
+            department: department,
+            phone: phone,
+            email: email,
+            photo: e.target.result
+        };
+
+        pendingMembers.push(member);
+
+        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+
+        alert("✅ Registration submitted successfully.\nWaiting for Admin Approval.");
+
+        document.querySelector("form").reset();
+
+    };
+
+    reader.readAsDataURL(photo);
+
+}
 
 
 // ==========================
