@@ -683,42 +683,38 @@ function displayPending(){
 
 
 function approveMember(index){
-    alert("Approve is working");
 
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
-
     let members = JSON.parse(localStorage.getItem("members")) || [];
-
 
     let member = pendingMembers[index];
 
+    if(!member){
+        alert("Member not found.");
+        return;
+    }
 
-    member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
-
+    member.id = "FDN-" + String(members.length + 1).padStart(4, "0");
 
     members.push(member);
 
-
     localStorage.setItem("members", JSON.stringify(members));
 
-
-    pendingMembers.splice(index,1);
-
+    pendingMembers.splice(index, 1);
 
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-
-    alert(
-"🎉 Congratulations!\n\n" +
-"Your FIDEEN membership application has been approved.\n\n" +
-"Member ID: " + member.id + "\n\n" +
-"Welcome to FITHYATUD-DEENIL-ISLAMY (FIDEEN).\n\n" +
-"Allah Is Our Strength."
-);
-
-
     displayPending();
 
+    displayMembers();
+
+    alert(
+        "🎉 Congratulations!\n\n" +
+        "Your FIDEEN membership application has been approved.\n\n" +
+        "Member ID: " + member.id + "\n\n" +
+        "Welcome to FITHYATUD-DEENIL-ISLAMY (FIDEEN).\n\n" +
+        "Allah Is Our Strength."
+    );
 }
 
 
