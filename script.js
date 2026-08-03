@@ -88,7 +88,7 @@ function searchMembers() {
 
 }
 
-        alert("✅ Member Registered Successfully!");
+        alert("✅ Registration submitted! Waiting for admin approval.");
 
 
         document.querySelector("form").reset();
