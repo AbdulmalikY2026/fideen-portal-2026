@@ -455,3 +455,34 @@ window.onload = function(){
 
 
 };
+function loadDashboardStats(){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
+
+
+    let totalMembers = document.getElementById("totalMembers");
+
+    let totalAttendance = document.getElementById("totalAttendance");
+
+    let totalAnnouncements = document.getElementById("totalAnnouncements");
+
+
+    if(totalMembers){
+        totalMembers.innerText = members.length;
+    }
+
+
+    if(totalAttendance){
+        totalAttendance.innerText = attendance.length;
+    }
+
+
+    if(totalAnnouncements){
+        totalAnnouncements.innerText = announcements.length;
+    }
+
+}
