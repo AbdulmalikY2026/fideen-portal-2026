@@ -69,7 +69,7 @@ function displayMembers() {
 
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    members.forEach(function(member) {
+    members.forEach(function(member, index) {
 
         let card = document.createElement("div");
         card.className = "card";
@@ -80,10 +80,27 @@ function displayMembers() {
             <p><strong>Department:</strong> ${member.department}</p>
             <p><strong>Phone:</strong> ${member.phone}</p>
             <p><strong>Email:</strong> ${member.email}</p>
+
+            <button onclick="deleteMember(${index})">🗑 Delete</button>
         `;
 
         memberList.appendChild(card);
     });
+
+    let total = document.getElementById("totalMembers");
+    if (total) {
+        total.innerText = members.length;
+    }
+}
+
+function deleteMember(index) {
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    if (confirm("Delete this member?")) {
+        members.splice(index, 1);
+        localStorage.setItem("members", JSON.stringify(members));
+        displayMembers();
+    }
 }
 
 window.onload = function() {
