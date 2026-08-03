@@ -299,7 +299,7 @@ function approveMember(index){
     localStorage.setItem("members", JSON.stringify(members));
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-    alert("6");
+    alert("Saved successfully");
 
     displayPending();
 
