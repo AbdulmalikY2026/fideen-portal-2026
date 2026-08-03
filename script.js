@@ -62,6 +62,12 @@ pendingMembers.push(member);
 
 localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
         
+
+
+    reader.readAsDataURL(photo);
+
+}
+
 function searchMembers() {
 
     let input = document.getElementById("searchMember");
@@ -94,12 +100,6 @@ function searchMembers() {
         document.querySelector("form").reset();
 
     };
-
-
-    reader.readAsDataURL(photo);
-
-}
-
 
 
 
