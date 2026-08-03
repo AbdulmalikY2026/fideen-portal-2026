@@ -41,7 +41,33 @@ function registerMember(event){
         alert("Please choose a photo.");
         return;
     }
+reader.onload = function(e){
 
+    alert("Photo loaded");
+
+    let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
+
+    let member = {
+        name:name,
+        department:department,
+        phone:phone,
+        email:email,
+        photo:e.target.result
+    };
+
+    pendingMembers.push(member);
+
+    alert("Members in pending: " + pendingMembers.length);
+
+    localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+
+    alert("Registration submitted!");
+
+    document.querySelector("form").reset();
+};
+
+reader.readAsDataURL(photo);
+    
     let reader = new FileReader();
 
     reader.onload = function(e){
