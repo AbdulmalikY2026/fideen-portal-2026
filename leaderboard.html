@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo" width="80">
+    <h1>FIDEEN Leaderboard</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<nav>
+    <a href="admin.html">Dashboard</a>
+    <a href="members.html">Members</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="attendance-report.html">Attendance Report</a>
+</nav>
+
+<section class="cards">
+
+<div class="card">
+
+<h2>🏆 Most Active Members</h2>
+
+<div id="leaderboardList"></div>
+
+</div>
+
+</section>
+
+<script>
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+let leaderboard = [];
+
+members.forEach(function(member){
+
+    let count = attendance.filter(function(record){
+        return record.name === member.name;
+    }).length;
+
+    leaderboard.push({
+        name: member.name,
+        total: count
+    });
+
+});
+
+leaderboard.sort(function(a,b){
+    return b.total - a.total;
+});
+
+let output = "";
+
+leaderboard.forEach(function(member,index){
+
+    let medal = "";
+
+    if(index === 0){
+        medal = "🥇";
+    }else if(index === 1){
+        medal = "🥈";
+    }else if(index === 2){
+        medal = "🥉";
+    }else{
+        medal = "🏅";
+    }
+
+    output += `
+    <p><strong>${medal} ${member.name}</strong> — ${member.total} Attendance(s)</p>
+    <hr>
+    `;
+
+});
+
+document.getElementById("leaderboardList").innerHTML = output;
+
+</script>
+
+</body>
+</html>
