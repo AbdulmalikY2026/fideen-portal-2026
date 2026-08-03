@@ -1,15 +1,19 @@
 function login(event) {
     event.preventDefault();
 
+    alert("Login function started");
+
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
+    alert(username + " | " + password);
+
     if (username === "admin" && password === "1234") {
+        alert("Correct username and password");
         localStorage.setItem("adminLogin", "true");
-        alert("✅ Login Successful!");
         window.location.href = "admin.html";
     } else {
-        alert("❌ Incorrect Username or Password");
+        alert("Wrong username or password");
     }
 }
 
