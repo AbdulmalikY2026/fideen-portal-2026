@@ -19,6 +19,7 @@ function logout() {
     window.location.href = "login.html";
 }
 
+
 function registerMember(event) {
     event.preventDefault();
 
@@ -36,6 +37,7 @@ function registerMember(event) {
     let reader = new FileReader();
 
     reader.onload = function(e) {
+
         let members = JSON.parse(localStorage.getItem("members")) || [];
 
         let member = {
@@ -60,7 +62,9 @@ function registerMember(event) {
     reader.readAsDataURL(photo);
 }
 
+
 function displayMembers() {
+
     let memberList = document.getElementById("memberList");
 
     if (!memberList) return;
@@ -72,71 +76,239 @@ function displayMembers() {
     members.forEach(function(member, index) {
 
         let card = document.createElement("div");
+
         card.className = "card";
 
         card.innerHTML = `
-            <img src="${member.photo}" width="100" height="100" style="border-radius:50%;"><br><br>
-            <h3>${member.name}</h3>
-            <p><strong>Department:</strong> ${member.department}</p>
-            <p><strong>Phone:</strong> ${member.phone}</p>
-            <p><strong>Email:</strong> ${member.email}</p>
+        <img src="${member.photo}" width="100" height="100" style="border-radius:50%;"><br><br>
 
-            <button onclick="editMember(${index})">✏ Edit</button>
-            <button onclick="deleteMember(${index})">🗑 Delete</button>
+        <h3>${member.name}</h3>
+
+        <p><strong>Department:</strong> ${member.department}</p>
+
+        <p><strong>Phone:</strong> ${member.phone}</p>
+
+        <p><strong>Email:</strong> ${member.email}</p>
+
+        <button onclick="editMember(${index})">✏ Edit</button>
+
+        <button onclick="deleteMember(${index})">🗑 Delete</button>
         `;
 
         memberList.appendChild(card);
+
     });
 
+
     let total = document.getElementById("totalMembers");
+
     if (total) {
         total.innerText = members.length;
     }
 }
 
+
+
 function editMember(index) {
+
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     let member = members[index];
 
+
     let newName = prompt("Edit Name:", member.name);
+
     if (newName === null) return;
 
+
     let newDepartment = prompt("Edit Department:", member.department);
+
     if (newDepartment === null) return;
 
+
     let newPhone = prompt("Edit Phone:", member.phone);
+
     if (newPhone === null) return;
 
+
     let newEmail = prompt("Edit Email:", member.email);
+
     if (newEmail === null) return;
+
+
 
     members[index].name = newName;
     members[index].department = newDepartment;
     members[index].phone = newPhone;
     members[index].email = newEmail;
 
+
     localStorage.setItem("members", JSON.stringify(members));
 
+
     displayMembers();
+
 
     alert("✅ Member Updated Successfully!");
 }
 
+
+
 function deleteMember(index) {
+
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
+
     if (confirm("Delete this member?")) {
+
+
         members.splice(index, 1);
+
 
         localStorage.setItem("members", JSON.stringify(members));
 
+
         displayMembers();
 
+
         alert("🗑 Member Deleted Successfully!");
+
     }
 }
 
+
+
+function loadMembers() {
+
+    let attendanceName = document.getElementById("attendanceName");
+
+
+    if (!attendanceName) return;
+
+
+    attendanceName.innerHTML = '<option value="">Choose Member</option>';
+
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+
+    members.forEach(function(member) {
+
+
+        let option = document.createElement("option");
+
+
+        option.value = member.name;
+
+
+        option.textContent = member.name;
+
+
+        attendanceName.appendChild(option);
+
+    });
+
+}
+
+
+
+function markAttendance(event) {
+
+    event.preventDefault();
+
+
+    let name = document.getElementById("attendanceName").value;
+
+    let date = document.getElementById("attendanceDate").value;
+
+
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+
+
+    attendance.push({
+
+        name: name,
+
+        date: date,
+
+        status: "Present"
+
+    });
+
+
+
+    localStorage.setItem("attendance", JSON.stringify(attendance));
+
+
+    displayAttendance();
+
+
+    alert("✅ Attendance Marked Successfully!");
+
+
+    document.querySelector("form").reset();
+
+}
+
+
+
+
+function displayAttendance() {
+
+
+    let attendanceList = document.getElementById("attendanceList");
+
+
+    if (!attendanceList) return;
+
+
+    attendanceList.innerHTML = "";
+
+
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+
+
+    attendance.forEach(function(record) {
+
+
+        let card = document.createElement("div");
+
+
+        card.className = "card";
+
+
+
+        card.innerHTML = `
+
+        <h3>${record.name}</h3>
+
+        <p><strong>Date:</strong> ${record.date}</p>
+
+        <p><strong>Status:</strong> ${record.status}</p>
+
+        `;
+
+
+
+        attendanceList.appendChild(card);
+
+
+    });
+
+}
+
+
+
 window.onload = function() {
+
     displayMembers();
+
+    loadMembers();
+
+    displayAttendance();
+
 };
