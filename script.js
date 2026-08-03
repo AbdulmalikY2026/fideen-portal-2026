@@ -271,33 +271,33 @@ function displayPending(){
 // ==========================
 
 function approveMember(index){
-alert("Approve button clicked");
+
+    alert("Approve clicked");
+
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
-    if(index < 0 || index >= pendingMembers.length){
-        alert("❌ Member not found.");
+    let member = pendingMembers[index];
+
+    if(!member){
+        alert("Member not found");
         return;
     }
-
-    let member = pendingMembers[index];
 
     member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
 
     members.push(member);
 
+    pendingMembers.splice(index, 1);
+
     localStorage.setItem("members", JSON.stringify(members));
-
-    pendingMembers.splice(index,1);
-
     localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
+
+    alert("✅ Member Approved Successfully!");
 
     displayPending();
     displayMembers();
-    loadMembers();
     loadDashboardStats();
-
-    alert("✅ Member Approved Successfully!");
 
 }
 
