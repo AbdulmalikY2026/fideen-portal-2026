@@ -483,6 +483,7 @@ window.onload = function(){
 
     showDateTime();
 
+    displayPending();
 };
 function loadDashboardStats(){
 
