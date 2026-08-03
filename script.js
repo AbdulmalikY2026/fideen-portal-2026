@@ -118,6 +118,7 @@ function displayMembers() {
 
         <p><strong>Email:</strong> ${member.email}</p>
 
+        <p><strong>Member ID:</strong> ${member.id}</p>
 
         <button onclick="editMember(${index})">✏ Edit</button>
 
