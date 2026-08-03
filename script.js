@@ -467,7 +467,6 @@ function showAttendanceReport(){
 
 
 
-
 window.onload = function(){
 
     displayMembers();
@@ -479,6 +478,10 @@ window.onload = function(){
     showAttendanceReport();
 
     loadDashboardStats();
+
+    displayExecutives();
+
+    showDateTime();
 
 };
 function loadDashboardStats(){
