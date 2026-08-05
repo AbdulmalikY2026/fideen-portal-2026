@@ -162,3 +162,24 @@ nav{
 .menu a:hover{
     background:#53009c;
 }
+
+.card{
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h2{
+    color:#6a0dad;
+    margin-bottom:10px;
+}
+
+.card button{
+    width:100%;
+    margin-top:15px;
+    }
