@@ -1007,6 +1007,47 @@ function createExecutivePoll(){
 }
 
 // ==========================
+// START ELECTION
+// ==========================
+
+function startElection(){
+
+    localStorage.setItem("electionStatus","open");
+
+    alert("✅ Election Started!");
+
+}
+
+// ==========================
+// END ELECTION
+// ==========================
+
+function endElection(){
+
+    localStorage.setItem("electionStatus","closed");
+
+    alert("🛑 Election Closed!");
+
+}
+
+// ==========================
+// RESET ELECTION
+// ==========================
+
+function resetElection(){
+
+    if(confirm("Reset this election?")){
+
+        localStorage.removeItem("activePoll");
+        localStorage.removeItem("electionStatus");
+
+        alert("✅ Election Reset Successfully!");
+
+    }
+
+}
+
+// ==========================
 // PAGE LOAD
 // ==========================
 
