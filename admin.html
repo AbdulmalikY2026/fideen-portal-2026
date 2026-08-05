@@ -26,6 +26,27 @@ if (localStorage.getItem("adminLogin") !== "true") {
     <a href="members.html">Members</a>
     <a href="attendance-report.html">Attendance Report</a>
 </nav>
+
+    <section class="welcome">
+
+<h2>👔 Add Executive</h2>
+
+<form onsubmit="addExecutive(event)">
+
+<input id="executiveName" type="text" placeholder="Full Name" required>
+
+<input id="executivePosition" type="text" placeholder="Position" required>
+
+<input id="executivePhone" type="tel" placeholder="Phone Number" required>
+
+<input id="executivePhoto" type="file" accept="image/*" required>
+
+<button type="submit">Add Executive</button>
+
+</form>
+
+    </section>
+    
 <section class="cards">
 
 <div class="card">
