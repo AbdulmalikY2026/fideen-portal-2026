@@ -938,6 +938,49 @@ function castVote(){
 }
 
 // ==========================
+// CREATE POLL
+// ==========================
+
+function createPoll(){
+
+    let title = document.getElementById("pollTitle").value.trim();
+
+    let options = [];
+
+    ["option1","option2","option3","option4"].forEach(function(id){
+
+        let value = document.getElementById(id).value.trim();
+
+        if(value !== ""){
+            options.push(value);
+        }
+
+    });
+
+    if(title === ""){
+        alert("Enter poll title.");
+        return;
+    }
+
+    if(options.length < 2){
+        alert("Enter at least two options.");
+        return;
+    }
+
+    let poll = {
+        title: title,
+        options: options,
+        results: {},
+        voters: []
+    };
+
+    localStorage.setItem("activePoll", JSON.stringify(poll));
+
+    alert("✅ Poll created successfully!");
+
+}
+
+// ==========================
 // PAGE LOAD
 // ==========================
 
