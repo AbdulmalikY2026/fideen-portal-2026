@@ -21,13 +21,17 @@
 </nav>
 
 <section class="welcome">
+
     <h2>Member Registration</h2>
-<input
-    type="text"
-    id="searchMember"
-    placeholder="🔍 Search member by name..."
-    onkeyup="searchMembers()">
+
+    <input
+        type="text"
+        id="searchMember"
+        placeholder="🔍 Search member by name..."
+        onkeyup="searchMembers()">
+
     <form onsubmit="registerMember(event)">
+
         <input id="name" type="text" placeholder="Full Name" required><br><br>
 
         <input id="department" type="text" placeholder="Department" required><br><br>
@@ -38,15 +42,27 @@
 
         <input id="photo" type="file" accept="image/*" required><br><br>
 
+        <!-- NEW -->
+        <input id="password" type="password" placeholder="Create Password" required><br><br>
+
+        <input id="confirmPassword" type="password" placeholder="Confirm Password" required><br><br>
+
         <button type="submit">Register</button>
+
     </form>
+
 </section>
 
 <section class="cards">
+
     <div class="card">
+
         <h3>Registered Members</h3>
+
         <div id="memberList"></div>
+
     </div>
+
 </section>
 
 <footer>
