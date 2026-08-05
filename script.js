@@ -35,7 +35,14 @@ function registerMember(event){
     let department = document.getElementById("department").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
     let photo = document.getElementById("photo").files[0];
+
+    if(password !== confirmPassword){
+        alert("❌ Passwords do not match.");
+        return;
+    }
 
     if(!photo){
         alert("Please select a photo.");
@@ -50,11 +57,12 @@ function registerMember(event){
             JSON.parse(localStorage.getItem("pendingMembers")) || [];
 
         pendingMembers.push({
-            name:name,
-            department:department,
-            phone:phone,
-            email:email,
-            photo:e.target.result
+            name: name,
+            department: department,
+            phone: phone,
+            email: email,
+            password: password,
+            photo: e.target.result
         });
 
         localStorage.setItem(
