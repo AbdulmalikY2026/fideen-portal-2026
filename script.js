@@ -950,6 +950,7 @@ window.onload = function(){
     displayAttendance();
     loadDashboardStats();
     displayVotes();
+    loadVote();
     showDateTime();
 
 };
