@@ -702,22 +702,27 @@ function displayExecutives(){
 
     executiveList.innerHTML = "";
 
-    let executives =
-    JSON.parse(localStorage.getItem("executives")) || [];
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
 
-    executives.forEach(function(executive){
+    executives.forEach(function(executive,index){
 
         executiveList.innerHTML += `
 
         <div class="card">
 
-        <img src="${executive.photo}" width="100" height="100" style="border-radius:50%;">
+            <img src="${executive.photo}" width="120" height="120" style="border-radius:50%;">
 
-        <h3>${executive.name}</h3>
+            <h3>${executive.name}</h3>
 
-        <p>${executive.position}</p>
+            <p><strong>${executive.position}</strong></p>
 
-        <p>${executive.phone}</p>
+            <p>${executive.phone}</p>
+
+            <button onclick="executiveWhatsApp(${index})">💬 WhatsApp</button>
+
+            <button onclick="editExecutive(${index})">✏ Edit</button>
+
+            <button onclick="deleteExecutive(${index})">🗑 Delete</button>
 
         </div>
 
