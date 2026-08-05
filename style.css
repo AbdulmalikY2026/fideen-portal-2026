@@ -128,3 +128,33 @@ nav{
 }
 
 }
+
+.navbar{
+    background:#6a0dad;
+    padding:10px;
+}
+
+.menu-btn{
+    width:100%;
+    background:white;
+    color:#6a0dad;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.menu{
+    display:none;
+    flex-direction:column;
+    margin-top:10px;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.menu a:hover{
+    background:#53009c;
+}
