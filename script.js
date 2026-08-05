@@ -780,6 +780,26 @@ function editExecutive(index){
 
 }
 
+function executiveWhatsApp(index){
+
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    let executive = executives[index];
+
+    let phone = executive.phone.replace(/^0/,"234");
+
+    let message =
+`Assalamu Alaikum ${executive.name},
+
+This message is from FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch.
+
+Allah Is Our Strength.`;
+
+    window.location.href =
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+}
+
 // ==========================
 // PAGE LOAD
 // ==========================
