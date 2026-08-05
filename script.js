@@ -941,34 +941,23 @@ function castVote(){
 // CREATE POLL
 // ==========================
 
-function createPoll(){
+function createExecutivePoll(){
 
-    let title = document.getElementById("pollTitle").value.trim();
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    if(executives.length < 2){
+        alert("Please add at least two executives.");
+        return;
+    }
 
     let options = [];
 
-    ["option1","option2","option3","option4"].forEach(function(id){
-
-        let value = document.getElementById(id).value.trim();
-
-        if(value !== ""){
-            options.push(value);
-        }
-
+    executives.forEach(function(executive){
+        options.push(executive.name);
     });
 
-    if(title === ""){
-        alert("Enter poll title.");
-        return;
-    }
-
-    if(options.length < 2){
-        alert("Enter at least two options.");
-        return;
-    }
-
     let poll = {
-        title: title,
+        title: "FIDEEN Executive Election",
         options: options,
         results: {},
         voters: []
@@ -976,7 +965,7 @@ function createPoll(){
 
     localStorage.setItem("activePoll", JSON.stringify(poll));
 
-    alert("✅ Poll created successfully!");
+    alert("✅ Executive election created successfully!");
 
 }
 
