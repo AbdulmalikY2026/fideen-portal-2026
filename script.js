@@ -480,6 +480,70 @@ function displayAttendance(){
 
         }
 
+// VIEW MEMBER PROFILE
+
+function viewMember(index){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    let member = members[index];
+
+    if(!member){
+        alert("Member not found");
+        return;
+    }
+
+    alert(
+`👤 FIDEEN MEMBER PROFILE
+
+Name: ${member.name}
+
+Member ID: ${member.id}
+
+Department: ${member.department}
+
+Phone: ${member.phone}
+
+Email: ${member.email}`
+    );
+
+}
+
+
+// SEND WHATSAPP MESSAGE
+
+function sendMemberWhatsApp(index){
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    let member = members[index];
+
+    if(!member){
+        alert("Member not found");
+        return;
+    }
+
+
+    let phone = member.phone.replace(/^0/, "234");
+
+
+    let message =
+`Assalamu Alaikum ${member.name},
+
+This is a message from *FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch.*
+
+We hope you are doing well.
+
+🆔 Member ID: ${member.id}
+
+Allah is Our Strength.`;
+
+
+    window.location.href =
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+}
+
     // ==========================
 // DASHBOARD STATISTICS
 // ==========================
