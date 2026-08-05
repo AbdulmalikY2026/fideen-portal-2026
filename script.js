@@ -872,13 +872,33 @@ function loadVote(){
 
     options.innerHTML = "";
 
-    poll.options.forEach(function(option){
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    executives.forEach(function(executive){
 
         options.innerHTML += `
-        <label>
-        <input type="radio" name="vote" value="${option}">
-        ${option}
-        </label><br><br>
+
+        <div class="card">
+
+            <img src="${executive.photo}" width="120" height="120"
+            style="border-radius:50%;object-fit:cover;">
+
+            <h3>${executive.name}</h3>
+
+            <p><strong>${executive.position}</strong></p>
+
+            <label>
+
+            <input type="radio"
+            name="vote"
+            value="${executive.name}">
+
+            Vote for ${executive.name}
+
+            </label>
+
+        </div>
+
         `;
 
     });
