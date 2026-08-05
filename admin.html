@@ -6,7 +6,14 @@
 </head>
 
 <body>
+    
+<script>
+if (localStorage.getItem("adminLogin") !== "true") {
+    window.location.href = "login.html";
+}
+</script>
 
+    
 <header>
     <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
     <h1>FIDEEN Admin Dashboard</h1>
