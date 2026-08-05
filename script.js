@@ -928,6 +928,12 @@ function loadVote(){
 
 function castVote(){
 
+    let status = localStorage.getItem("electionStatus");
+
+if(status !== "open"){
+    alert("Voting is currently closed.");
+    return;
+}
     let member = JSON.parse(localStorage.getItem("loggedInMember"));
 
     if(!member){
