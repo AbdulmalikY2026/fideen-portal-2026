@@ -786,17 +786,28 @@ function executiveWhatsApp(index){
 
     let executive = executives[index];
 
-    let phone = executive.phone.replace(/^0/,"234");
+    if(!executive){
+        alert("Executive not found.");
+        return;
+    }
+
+    let phone = executive.phone.replace(/\D/g, "");
+
+    if(phone.startsWith("0")){
+        phone = "234" + phone.substring(1);
+    }
 
     let message =
 `Assalamu Alaikum ${executive.name},
 
-This message is from FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch.
+This is a message from FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch.
 
 Allah Is Our Strength.`;
 
-    window.location.href =
-    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    window.open(
+        "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
+        "_blank"
+    );
 
 }
 
