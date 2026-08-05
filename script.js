@@ -504,6 +504,52 @@ function loadDashboardStats(){
 
 }
 
+// ==========================
+// MEMBER LOGIN
+// ==========================
+
+function memberLogin(event){
+
+    event.preventDefault();
+
+    let memberId = document.getElementById("loginId").value.trim();
+    let password = document.getElementById("loginPassword").value;
+
+    let members = JSON.parse(localStorage.getItem("members")) || [];
+
+    let member = members.find(function(m){
+
+        return m.id === memberId && m.password === password;
+
+    });
+
+    if(!member){
+
+        alert("❌ Invalid Member ID or Password.");
+        return;
+
+    }
+
+    localStorage.setItem("loggedInMember", JSON.stringify(member));
+
+    alert("✅ Login Successful!");
+
+    window.location.href = "member-dashboard.html";
+
+}
+
+
+// ==========================
+// MEMBER LOGOUT
+// ==========================
+
+function memberLogout(){
+
+    localStorage.removeItem("loggedInMember");
+
+    window.location.href = "member-login.html";
+
+                              }
 
 // ==========================
 // DATE & TIME
