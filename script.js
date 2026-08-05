@@ -483,8 +483,9 @@ function displayAttendance(){
 // VIEW MEMBER PROFILE
 
 function viewMember(index){
-
-    alert("View button working");
+    
+  alert("View button working");
+    
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     let member = members[index];
@@ -516,6 +517,7 @@ Email: ${member.email}`
 function sendMemberWhatsApp(index){
 
     alert("WhatsApp button working");
+    
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     let member = members[index];
