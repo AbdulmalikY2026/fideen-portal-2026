@@ -646,6 +646,53 @@ function showDateTime(){
 
 setInterval(showDateTime,1000);
 
+// ==========================
+// ADD EXECUTIVE
+// ==========================
+
+function addExecutive(event){
+
+    event.preventDefault();
+
+    let name = document.getElementById("executiveName").value.trim();
+    let position = document.getElementById("executivePosition").value.trim();
+    let phone = document.getElementById("executivePhone").value.trim();
+    let photo = document.getElementById("executivePhoto").files[0];
+
+    if(!photo){
+        alert("Please select a photo.");
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = function(e){
+
+        let executives =
+        JSON.parse(localStorage.getItem("executives")) || [];
+
+        executives.push({
+            name:name,
+            position:position,
+            phone:phone,
+            photo:e.target.result
+        });
+
+        localStorage.setItem(
+            "executives",
+            JSON.stringify(executives)
+        );
+
+        alert("✅ Executive Added Successfully!");
+
+        document.querySelector("form").reset();
+
+    };
+
+    reader.readAsDataURL(photo);
+
+}
+
 
 // ==========================
 // PAGE LOAD
