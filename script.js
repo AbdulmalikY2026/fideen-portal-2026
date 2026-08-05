@@ -854,6 +854,38 @@ function displayVotes(){
 }
 
 // ==========================
+// LOAD ACTIVE VOTE
+// ==========================
+
+function loadVote(){
+
+    let poll = JSON.parse(localStorage.getItem("activePoll"));
+
+    if(!poll) return;
+
+    let title = document.getElementById("voteTitle");
+    let options = document.getElementById("voteOptions");
+
+    if(!title || !options) return;
+
+    title.innerHTML = poll.title;
+
+    options.innerHTML = "";
+
+    poll.options.forEach(function(option){
+
+        options.innerHTML += `
+        <label>
+        <input type="radio" name="vote" value="${option}">
+        ${option}
+        </label><br><br>
+        `;
+
+    });
+
+}
+
+// ==========================
 // PAGE LOAD
 // ==========================
 
