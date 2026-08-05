@@ -694,6 +694,39 @@ function addExecutive(event){
 }
 
 
+function displayExecutives(){
+
+    let executiveList = document.getElementById("executiveList");
+
+    if(!executiveList) return;
+
+    executiveList.innerHTML = "";
+
+    let executives =
+    JSON.parse(localStorage.getItem("executives")) || [];
+
+    executives.forEach(function(executive){
+
+        executiveList.innerHTML += `
+
+        <div class="card">
+
+        <img src="${executive.photo}" width="100" height="100" style="border-radius:50%;">
+
+        <h3>${executive.name}</h3>
+
+        <p>${executive.position}</p>
+
+        <p>${executive.phone}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
 // ==========================
 // PAGE LOAD
 // ==========================
