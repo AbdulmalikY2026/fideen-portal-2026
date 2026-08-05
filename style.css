@@ -140,15 +140,19 @@ nav{
     color:#6a0dad;
     font-size:18px;
     font-weight:bold;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .menu{
     display:none;
-    flex-direction:column;
     margin-top:10px;
 }
 
 .menu a{
+    display:block;
     color:white;
     text-decoration:none;
     padding:12px;
