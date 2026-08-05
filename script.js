@@ -748,6 +748,38 @@ function deleteExecutive(index){
 
 }
 
+function editExecutive(index){
+
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    let executive = executives[index];
+
+    let name = prompt("Full Name", executive.name);
+
+    if(name===null) return;
+
+    let position = prompt("Position", executive.position);
+
+    if(position===null) return;
+
+    let phone = prompt("Phone Number", executive.phone);
+
+    if(phone===null) return;
+
+    executive.name = name;
+
+    executive.position = position;
+
+    executive.phone = phone;
+
+    localStorage.setItem("executives",JSON.stringify(executives));
+
+    displayExecutives();
+
+    alert("✅ Executive Updated");
+
+}
+
 // ==========================
 // PAGE LOAD
 // ==========================
