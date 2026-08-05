@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Members</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
+    <h1>Manage Members</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<nav>
+    <a href="admin.html">Dashboard</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="announcement.html">Announcements</a>
+    <a href="pending.html">Pending Applications</a>
+</nav>
+
+<section class="welcome">
+
+<h2>Registered Members</h2>
+
+<input
+type="text"
+id="searchMember"
+placeholder="🔍 Search member..."
+onkeyup="searchMembers()"><br><br>
+
+<div id="memberList"></div>
+
+</section>
+
+<footer>
+<p>FIDEEN TV © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+if(localStorage.getItem("adminLogin") !== "true"){
+
+    alert("Access Denied!");
+
+    window.location.href="login.html";
+
+}else{
+
+    displayMembers();
+
+}
+
+</script>
+
+</body>
+</html>
