@@ -317,10 +317,8 @@ May Allah bless you and grant you the strength to serve Islam sincerely.
 
 *Allah is Our Strength.*`;
 
-        window.open(
-            "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
-            "_blank"
-        );
+        window.location.href =
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
     } catch (e) {
 
