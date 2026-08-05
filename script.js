@@ -484,6 +484,7 @@ function displayAttendance(){
 
 function viewMember(index){
 
+    alert("View button working");
     let members = JSON.parse(localStorage.getItem("members")) || [];
 
     let member = members[index];
