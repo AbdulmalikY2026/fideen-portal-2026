@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIDEEN Member Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="file_000000006b08720aae07e71ef672adcb.png" alt="FIDEEN Logo">
+    <h1>Member Dashboard</h1>
+    <p>Allah Is Our Strength</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="announcement.html">Announcements</a>
+    <a href="#" onclick="memberLogout()">Logout</a>
+</nav>
+
+<section class="cards">
+
+<div class="card">
+
+<img id="memberPhoto" width="120" height="120" style="border-radius:50%;"><br><br>
+
+<h2 id="memberName"></h2>
+
+<p><strong>Member ID:</strong> <span id="memberId"></span></p>
+
+<p><strong>Department:</strong> <span id="memberDepartment"></span></p>
+
+<p><strong>Phone:</strong> <span id="memberPhone"></span></p>
+
+<p><strong>Email:</strong> <span id="memberEmail"></span></p>
+
+</div>
+
+</section>
+
+<footer>
+<p>FIDEEN TV © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+let member = JSON.parse(localStorage.getItem("loggedInMember"));
+
+if(!member){
+
+    alert("Please login first.");
+
+    window.location.href="member-login.html";
+
+}else{
+
+    document.getElementById("memberPhoto").src = member.photo;
+    document.getElementById("memberName").innerHTML = member.name;
+    document.getElementById("memberId").innerHTML = member.id;
+    document.getElementById("memberDepartment").innerHTML = member.department;
+    document.getElementById("memberPhone").innerHTML = member.phone;
+    document.getElementById("memberEmail").innerHTML = member.email;
+
+}
+
+</script>
+
+</body>
+</html>
