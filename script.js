@@ -886,6 +886,58 @@ function loadVote(){
 }
 
 // ==========================
+// CAST VOTE
+// ==========================
+
+function castVote(){
+
+    let member = JSON.parse(localStorage.getItem("loggedInMember"));
+
+    if(!member){
+        alert("Please login first.");
+        return;
+    }
+
+    let selected = document.querySelector('input[name="vote"]:checked');
+
+    if(!selected){
+        alert("Select one option.");
+        return;
+    }
+
+    let poll = JSON.parse(localStorage.getItem("activePoll"));
+
+    if(!poll){
+        alert("No active vote.");
+        return;
+    }
+
+    if(!poll.results){
+        poll.results = {};
+    }
+
+    if(!poll.voters){
+        poll.voters = [];
+    }
+
+    if(poll.voters.includes(member.id)){
+        alert("❌ You have already voted.");
+        return;
+    }
+
+    let option = selected.value;
+
+    poll.results[option] = (poll.results[option] || 0) + 1;
+
+    poll.voters.push(member.id);
+
+    localStorage.setItem("activePoll", JSON.stringify(poll));
+
+    alert("✅ Vote submitted successfully.");
+
+}
+
+// ==========================
 // PAGE LOAD
 // ==========================
 
