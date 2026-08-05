@@ -272,12 +272,8 @@ function displayPending(){
 
 function approveMember(index){
 
-    alert("1");
-
     let pendingMembers = JSON.parse(localStorage.getItem("pendingMembers")) || [];
     let members = JSON.parse(localStorage.getItem("members")) || [];
-
-    alert("2");
 
     let member = pendingMembers[index];
 
@@ -286,31 +282,51 @@ function approveMember(index){
         return;
     }
 
-    alert("3");
+    // Give the member an ID
+    member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
 
+    // Move member to approved list
     members.push(member);
-
-    alert("4");
-
     pendingMembers.splice(index,1);
 
-    alert("Saved successfully");
-
     try {
-    localStorage.setItem("members", JSON.stringify(members));
-    localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
-    alert("Saved successfully");
-} catch (e) {
-    alert("Error: " + e.message);
-}
 
-    displayPending();
+        localStorage.setItem("members", JSON.stringify(members));
+        localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
 
-    alert("7");
+        displayPending();
+        displayMembers();
 
-    displayMembers();
+        alert("✅ Member Approved Successfully!");
 
-    alert("8");
+        // WhatsApp congratulatory message
+        let phone = member.phone.replace(/^0/, "234");
+
+        let message =
+`Assalamu Alaikum ${member.name},
+
+🎉 Congratulations!
+
+Your registration as a member of *FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch* has been approved.
+
+🆔 Member ID: ${member.id}
+
+We warmly welcome you to the FIDEEN family.
+
+May Allah bless you and grant you the strength to serve Islam sincerely.
+
+*Allah is Our Strength.*`;
+
+        window.open(
+            "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
+            "_blank"
+        );
+
+    } catch (e) {
+
+        alert("Error: " + e.message);
+
+    }
 }
 
 
