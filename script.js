@@ -783,31 +783,19 @@ function editExecutive(index){
 function executiveWhatsApp(index){
 
     let executives = JSON.parse(localStorage.getItem("executives")) || [];
-
     let executive = executives[index];
 
-    if(!executive){
-        alert("Executive not found.");
-        return;
-    }
+    alert(executive.phone);
 
-    let phone = executive.phone.replace(/\D/g, "");
+    let phone = executive.phone.replace(/\D/g,"");
 
     if(phone.startsWith("0")){
         phone = "234" + phone.substring(1);
     }
 
-    let message =
-`Assalamu Alaikum ${executive.name},
+    alert(phone);
 
-This is a message from FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch.
-
-Allah Is Our Strength.`;
-
-    window.open(
-        "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
-        "_blank"
-    );
+    window.open("https://wa.me/" + phone, "_blank");
 
 }
 
