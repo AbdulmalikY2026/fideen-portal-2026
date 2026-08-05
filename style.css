@@ -76,18 +76,7 @@ nav a:hover{
     padding:20px;
 }
 
-.card{
-    background:#fff;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,.12);
-    transition:.3s;
-}
 
-.card:hover{
-    transform:translateY(-5px);
-}
 
 button{
     background:#6a0dad;
