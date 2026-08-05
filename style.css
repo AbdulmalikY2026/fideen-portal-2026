@@ -184,3 +184,23 @@ nav{
     width:100%;
     margin-top:15px;
     }
+
+.card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:10px;
+}
+
+.card label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+    color:#6a0dad;
+}
+
+.card input[type="radio"]{
+    width:auto;
+    margin-right:8px;
+    }
