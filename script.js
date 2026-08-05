@@ -140,9 +140,13 @@ function displayMembers(){
 
             <p><strong>Member ID:</strong> ${member.id || "Not Assigned"}</p>
 
-            <button onclick="editMember(${index})">✏ Edit</button>
+            <button onclick="viewMember(${index})">👤 View Profile</button>
 
-            <button onclick="deleteMember(${index})">🗑 Delete</button>
+<button onclick="sendMemberWhatsApp(${index})">💬 WhatsApp</button>
+
+<button onclick="editMember(${index})">✏ Edit</button>
+
+<button onclick="deleteMember(${index})">🗑 Delete</button>
 
         </div>
 
