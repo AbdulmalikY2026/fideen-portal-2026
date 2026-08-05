@@ -290,14 +290,14 @@ function approveMember(index){
         return;
     }
 
-    // Give the member an ID
+    // Assign Member ID
     member.id = "FDN-" + String(members.length + 1).padStart(4,"0");
 
     // Move member to approved list
     members.push(member);
     pendingMembers.splice(index,1);
 
-    try {
+    try{
 
         localStorage.setItem("members", JSON.stringify(members));
         localStorage.setItem("pendingMembers", JSON.stringify(pendingMembers));
@@ -311,28 +311,38 @@ function approveMember(index){
         let phone = member.phone.replace(/^0/, "234");
 
         let message =
-`Assalamu Alaikum ${member.name},
+`*Assalamu Alaikum Warahmatullahi Wabarakatuh*
 
-🎉 Congratulations!
+🎉 Congratulations *${member.name}!*
 
 Your registration as a member of *FITHYATUD-DEENIL-ISLAMY (FIDEEN), Offa Branch* has been approved.
 
 🆔 Member ID: ${member.id}
 
-We warmly welcome you to the FIDEEN family.
+You can now log in to the FIDEEN Members Portal using:
 
-May Allah bless you and grant you the strength to serve Islam sincerely.
+👤 Member ID: ${member.id}
+🔒 Password: (The password you created during registration)
 
-*Allah is Our Strength.*`;
+Please keep your password safe and do not share it with anyone.
+
+Welcome to the FIDEEN family.
+
+*Allah is Our Strength.*
+
+Signed:
+Abdulmalik Yusuf
+PRO, FIDEEN Offa Branch`;
 
         window.location.href =
-    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+        "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
-    } catch (e) {
+    }catch(e){
 
         alert("Error: " + e.message);
 
     }
+
 }
 
 
