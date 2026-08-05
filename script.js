@@ -800,6 +800,60 @@ function executiveWhatsApp(index){
 }
 
 // ==========================
+// CAST VOTE
+// ==========================
+
+function castVote(){
+
+    let option = document.getElementById("voteOption").value;
+
+    if(option === ""){
+        alert("Please choose an option.");
+        return;
+    }
+
+    let votes = JSON.parse(localStorage.getItem("votes")) || {};
+
+    if(votes[option]){
+        votes[option]++;
+    }else{
+        votes[option] = 1;
+    }
+
+    localStorage.setItem("votes", JSON.stringify(votes));
+
+    alert("✅ Vote submitted successfully!");
+
+    displayVotes();
+
+}
+
+
+// ==========================
+// DISPLAY VOTES
+// ==========================
+
+function displayVotes(){
+
+    let voteResults = document.getElementById("voteResults");
+
+    if(!voteResults) return;
+
+    voteResults.innerHTML = "";
+
+    let votes = JSON.parse(localStorage.getItem("votes")) || {};
+
+    for(let option in votes){
+
+        voteResults.innerHTML += `
+            <p><strong>${option}</strong>: ${votes[option]} vote(s)</p>
+        `;
+
+    }
+
+}
+
+// ==========================
 // PAGE LOAD
 // ==========================
 
