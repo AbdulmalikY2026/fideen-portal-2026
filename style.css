@@ -4,6 +4,7 @@
     box-sizing:border-box;
     font-family:Arial,sans-serif;
 }
+
 html, body{
     height:100%;
 }
@@ -113,7 +114,7 @@ footer{
     color:white;
     text-align:center;
     padding:15px;
-    margin-top:30px;
+    margin-top:auto;
 }
 
 @media(max-width:768px){
