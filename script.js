@@ -865,6 +865,7 @@ window.onload = function(){
     loadMembers();
     displayAttendance();
     loadDashboardStats();
+    displayVotes();
     showDateTime();
 
 };
