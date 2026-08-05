@@ -732,6 +732,22 @@ function displayExecutives(){
 
 }
 
+function deleteExecutive(index){
+
+    let executives = JSON.parse(localStorage.getItem("executives")) || [];
+
+    if(confirm("Delete this executive?")){
+
+        executives.splice(index,1);
+
+        localStorage.setItem("executives",JSON.stringify(executives));
+
+        displayExecutives();
+
+    }
+
+}
+
 // ==========================
 // PAGE LOAD
 // ==========================
