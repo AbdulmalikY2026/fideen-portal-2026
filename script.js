@@ -841,15 +841,32 @@ function displayVotes(){
 
     voteResults.innerHTML = "";
 
-    let votes = JSON.parse(localStorage.getItem("votes")) || {};
+    let poll = JSON.parse(localStorage.getItem("activePoll"));
 
-    for(let option in votes){
+    if(!poll){
+        voteResults.innerHTML = "<p>No active election.</p>";
+        return;
+    }
+
+    let results = poll.results || {};
+
+    poll.options.forEach(function(option){
+
+        let total = results[option] || 0;
 
         voteResults.innerHTML += `
-            <p><strong>${option}</strong>: ${votes[option]} vote(s)</p>
+
+        <div class="card">
+
+            <h3>${option}</h3>
+
+            <h2>${total} Vote(s)</h2>
+
+        </div>
+
         `;
 
-    }
+    });
 
 }
 
