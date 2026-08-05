@@ -702,6 +702,7 @@ window.onload = function(){
 
     displayMembers();
     displayPending();
+    displayExecutives();
     loadMembers();
     displayAttendance();
     loadDashboardStats();
